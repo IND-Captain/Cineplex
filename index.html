@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlex - Your Premier Cinema Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4ecdc4;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23333" width="1200" height="800"/><circle fill="%23ff6b6b" opacity="0.1" cx="300" cy="200" r="100"/><circle fill="%234ecdc4" opacity="0.1" cx="900" cy="600" r="150"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Movie Grid */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .movie-info {
+            padding: 1.5rem;
+        }
+
+        .movie-info h3 {
+            margin-bottom: 0.5rem;
+            color: #4ecdc4;
+        }
+
+        .movie-rating {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        /* Showtimes Table */
+        .showtimes-table {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .showtimes-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .showtimes-table th,
+        .showtimes-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .showtimes-table th {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .time-slot {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin: 0.2rem;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            background: #4ecdc4;
+            color: #1a1a1a;
+        }
+
+        /* Seat Selection */
+        .theater {
+            max-width: 800px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .screen {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            height: 80px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .seats-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .seat {
+            width: 40px;
+            height: 40px;
+            background: #444;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .seat:hover {
+            background: #4ecdc4;
+            transform: scale(1.1);
+        }
+
+        .seat.selected {
+            background: #ff6b6b;
+        }
+
+        .seat.occupied {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        .seat.occupied:hover {
+            background: #666;
+            transform: none;
+        }
+
+        .seat-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        /* Booking Summary */
+        .booking-summary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4ecdc4;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .movies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .seats-container {
+                grid-template-columns: repeat(8, 1fr);
+            }
+            
+            .seat {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">CinePlex</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('movies')">Movies</a></li>
+                <li><a href="#" onclick="showPage('showtimes')">Showtimes</a></li>
+                <li><a href="#" onclick="showPage('booking')">Booking</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="container">
+                    <h1>Welcome to CinePlex</h1>
+                    <p>Experience the magic of cinema with premium comfort and cutting-edge technology</p>
+                    <a href="#" class="btn" onclick="showPage('movies')">Book Your Tickets Now</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Movies Page -->
+        <div id="movies" class="page">
+            <div class="container">
+                <h2>Now Showing</h2>
+                <div class="movies-grid" id="moviesGrid"></div>
+            </div>
+        </div>
+
+        <!-- Showtimes Page -->
+        <div id="showtimes" class="page">
+            <div class="container">
+                <h2>Movie Showtimes</h2>
+                <div class="showtimes-table">
+                    <table id="showtimesTable">
+                        <thead>
+                            <tr>
+                                <th>Movie</th>
+                                <th>Theater</th>
+                                <th>Times</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Page -->
+        <div id="booking" class="page">
+            <div class="container">
+                <h2>Select Your Seats</h2>
+                <div class="theater">
+                    <div class="screen">SCREEN</div>
+                    <div class="seat-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #444;"></div>
+                            <span>Available</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #ff6b6b;"></div>
+                            <span>Selected</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #666;"></div>
+                            <span>Occupied</span>
+                        </div>
+                    </div>
+                    <div class="seats-container" id="seatsContainer"></div>
+                    <div class="booking-summary" id="bookingSummary">
+                        <h3>Booking Summary</h3>
+                        <p>Selected Seats: <span id="selectedSeats">None</span></p>
+                        <p>Total Price: $<span id="totalPrice">0</span></p>
+                        <button class="btn" onclick="confirmBooking()">Confirm Booking</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CinePlex. All rights reserved. | Experience Premium Cinema</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data
+        const movies = [
+            { id: 1, title: "Galactic Warriors", genre: "Sci-Fi Action", rating: "★★★★☆", duration: "2h 15m" },
+            { id: 2, title: "Love in Paris", genre: "Romance", rating: "★★★★★", duration: "1h 45m" },
+            { id: 3, title: "Mystery Island", genre: "Adventure", rating: "★★★☆☆", duration: "2h 5m" },
+            { id: 4, title: "Comedy Central", genre: "Comedy", rating: "★★★★☆", duration: "1h 55m" },
+            { id: 5, title: "Dark Shadows", genre: "Horror", rating: "★★★☆☆", duration: "1h 50m" },
+            { id: 6, title: "Space Odyssey", genre: "Sci-Fi", rating: "★★★★★", duration: "2h 30m" }
+        ];
+
+        const showtimes = [
+            { movie: "Galactic Warriors", theater: "Theater 1", times: ["10:00 AM", "1:30 PM", "5:00 PM", "8:30 PM"], price: 15 },
+            { movie: "Love in Paris", theater: "Theater 2", times: ["11:00 AM", "2:00 PM", "6:00 PM", "9:00 PM"], price: 12 },
+            { movie: "Mystery Island", theater: "Theater 3", times: ["12:00 PM", "3:30 PM", "7:00 PM"], price: 14 },
+            { movie: "Comedy Central", theater: "Theater 1", times: ["10:30 AM", "2:30 PM", "6:30 PM", "9:30 PM"], price: 13 },
+            { movie: "Dark Shadows", theater: "Theater 2", times: ["11:30 AM", "4:00 PM", "8:00 PM"], price: 15 },
+            { movie: "Space Odyssey", theater: "Theater 3", times: ["1:00 PM", "5:30 PM", "9:15 PM"], price: 16 }
+        ];
+
+        let selectedSeats = [];
+        let seatPrice = 15;
+
+        // Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Initialize page content
+            if (pageId === 'movies') {
+                displayMovies();
+            } else if (pageId === 'showtimes') {
+                displayShowtimes();
+            } else if (pageId === 'booking') {
+                generateSeats();
+            }
+        }
+
+        // Display movies
+        function displayMovies() {
+            const moviesGrid = document.getElementById('moviesGrid');
+            moviesGrid.innerHTML = '';
+
+            movies.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.className = 'movie-card';
+                movieCard.innerHTML = `
+                    <div class="movie-poster">${movie.title}</div>
+                    <div class="movie-info">
+                        <h3>${movie.title}</h3>
+                        <div class="movie-rating">${movie.rating}</div>
+                        <p><strong>Genre:</strong> ${movie.genre}</p>
+                        <p><strong>Duration:</strong> ${movie.duration}</p>
+                    </div>
+                `;
+                movieCard.addEventListener('click', () => {
+                    showPage('showtimes');
+                });
+                moviesGrid.appendChild(movieCard);
+            });
+        }
+
+        // Display showtimes
+        function displayShowtimes() {
+            const tableBody = document.querySelector('#showtimesTable tbody');
+            tableBody.innerHTML = '';
+
+            showtimes.forEach(showtime => {
+                const row = document.createElement('tr');
+                
+                const timesHtml = showtime.times.map(time => 
+                    `<span class="time-slot" onclick="selectShowtime('${showtime.movie}', '${time}', ${showtime.price})">${time}</span>`
+                ).join('');
+
+                row.innerHTML = `
+                    <td>${showtime.movie}</td>
+                    <td>${showtime.theater}</td>
+                    <td>${timesHtml}</td>
+                    <td>$${showtime.price}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Select showtime
+        function selectShowtime(movie, time, price) {
+            seatPrice = price;
+            showPage('booking');
+            generateSeats();
+        }
+
+        // Generate seats
+        function generateSeats() {
+            const seatsContainer = document.getElementById('seatsContainer');
+            seatsContainer.innerHTML = '';
+            selectedSeats = [];
+
+            // Generate 10 rows of 10 seats each
+            for (let row = 0; row < 10; row++) {
+                for (let seat = 0; seat < 10; seat++) {
+                    const seatElement = document.createElement('div');
+                    seatElement.className = 'seat';
+                    seatElement.dataset.row = String.fromCharCode(65 + row);
+                    seatElement.dataset.seat = seat + 1;
+                    seatElement.textContent = `${String.fromCharCode(65 + row)}${seat + 1}`;
+
+                    // Randomly make some seats occupied
+                    if (Math.random() < 0.3) {
+                        seatElement.classList.add('occupied');
+                    } else {
+                        seatElement.addEventListener('click', () => toggleSeat(seatElement));
+                    }
+
+                    seatsContainer.appendChild(seatElement);
+                }
+            }
+            updateBookingSummary();
+        }
+
+        // Toggle seat selection
+        function toggleSeat(seatElement) {
+            const seatId = `${seatElement.dataset.row}${seatElement.dataset.seat}`;
+            
+            if (seatElement.classList.contains('selected')) {
+                seatElement.classList.remove('selected');
+                selectedSeats = selectedSeats.filter(seat => seat !== seatId);
+            } else {
+                seatElement.classList.add('selected');
+                selectedSeats.push(seatId);
+            }
+            
+            updateBookingSummary();
+        }
+
+        // Update booking summary
+        function updateBookingSummary() {
+            document.getElementById('selectedSeats').textContent = 
+                selectedSeats.length > 0 ? selectedSeats.join(', ') : 'None';
+            document.getElementById('totalPrice').textContent = selectedSeats.length * seatPrice;
+        }
+
+        // Confirm booking
+        function confirmBooking() {
+            if (selectedSeats.length === 0) {
+                alert('Please select at least one seat!');
+                return;
+            }
+
+            const total = selectedSeats.length * seatPrice;
+            alert(`Booking confirmed!\n\nSeats: ${selectedSeats.join(', ')}\nTotal: $${total}\n\nThank you for choosing CinePlex!`);
+            
+            // Reset selection
+            selectedSeats = [];
+            generateSeats();
+        }
+
+        // Handle contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            alert(`Thank you ${name}! Your message has been sent successfully. We'll get back to you soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Initialize
+        window.addEventListener('load', function() {
+            displayMovies();
+        });
+
+        // Add smooth scrolling and enhanced interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
