@@ -643,28 +643,7 @@
         moviesGrid.appendChild(movieCard);
     });
 }
-        function displayMovies() {
-            const moviesGrid = document.getElementById('moviesGrid');
-            moviesGrid.innerHTML = '';
-
-            movies.forEach(movie => {
-                const movieCard = document.createElement('div');
-                movieCard.className = 'movie-card';
-                movieCard.innerHTML = `
-                    <div class="movie-poster">${movie.title}</div>
-                    <div class="movie-info">
-                        <h3>${movie.title}</h3>
-                        <div class="movie-rating">${movie.rating}</div>
-                        <p><strong>Genre:</strong> ${movie.genre}</p>
-                        <p><strong>Duration:</strong> ${movie.duration}</p>
-                    </div>
-                `;
-                movieCard.addEventListener('click', () => {
-                    showPage('showtimes');
-                });
-                moviesGrid.appendChild(movieCard);
-            });
-        }
+     
 
         // Display showtimes
         function displayShowtimes() {
