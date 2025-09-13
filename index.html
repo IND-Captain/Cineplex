@@ -92,7 +92,7 @@
         }
         main,
 .page {
-  margin-top: 100px;
+  margin-top: 100px; 
 }
 
         .page {
@@ -603,15 +603,14 @@
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '';
 
-    const movieOverviews = {
-        "Galactic Warriors": "To find her missing sister, a fearless bounty hunter and her partner infiltrate a brutal intergalactic prison planet for women—where survival means defying the odds.",
-        "Love in Paris": "Ten years after a passionate affair, John travels to Paris seeking closure. Instead, he’s drawn into a mysterious romance with Lea, a woman tied to his past, forcing him to confront the shadows of love and regret.",
-        "Mystery Island": "A group of explorers uncover ancient secrets on a remote island, but the truth may cost them their lives.",
-        "Comedy Central": "A washed-up comedian gets one last shot at fame when he’s forced to mentor a group of misfit performers.",
-        "Dark Shadows": "A haunted mansion reveals terrifying secrets as a family confronts the ghosts of their past.",
-        "Space Odyssey": "An astronaut embarks on a journey beyond the stars to uncover the origins of humanity."
-    };
-
+   const movieOverviews = {
+    "Mirai": "Dominate the Universe.",
+    "Kotha Lokah: Chapter 1 - Chandra": "Discover the love.",
+    "Kishkindhapuri": "Uncover the secrets.",
+    "Little Hearts": "A heartwarming tale of laughter and friendship.",
+    "The Conjuring: Last Rites": "Face the final chapter of fear.",
+    "Demon Slayer: Kimetsu no Yaiba Infinity Castle": "The ultimate battle begins."
+};
     movies.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.className = 'movie-card';
@@ -644,7 +643,6 @@
 }
      
 
-    
         function displayShowtimes() {
             const tableBody = document.querySelector('#showtimesTable tbody');
             tableBody.innerHTML = '';
