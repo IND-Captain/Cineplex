@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CinePlex - Your Premier Cinema Experience</title>
     <style>
         * {
@@ -24,7 +24,6 @@
             padding: 0 20px;
         }
 
-        
         header {
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
@@ -85,15 +84,15 @@
             color: #4ecdc4;
         }
 
-        
         main {
             margin-top: 80px;
             min-height: calc(100vh - 80px);
         }
+
         main,
-.page {
-  margin-top: 100px; 
-}
+        .page {
+            margin-top: 100px;
+        }
 
         .page {
             display: none;
@@ -104,11 +103,10 @@
             display: block;
         }
 
-        
         .hero {
             text-align: center;
             padding: 4rem 0;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23333" width="1200" height="800"/><circle fill="%23ff6b6b" opacity="0.1" cx="300" cy="200" r="100"/><circle fill="%234ecdc4" opacity="0.1" cx="900" cy="600" r="150"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23333" width="1200" height="800"/><circle fill="%23ff6b6b" opacity="0.1" cx="300" cy="200" r="100"/><circle fill="%234ecdc4" opacity="0.1" cx="900" cy="600" r="150"/></svg>');
             background-size: cover;
             background-position: center;
         }
@@ -146,79 +144,79 @@
             box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
         }
 
-        
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding-top: 2rem;
-}
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding-top: 2rem;
+        }
 
-.movie-card {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  perspective: 1000px;
-  margin: 0 auto;
-}
+        .movie-card {
+            width: 100%;
+            max-width: 300px;
+            min-height: 400px;
+            perspective: 1000px;
+            margin: 0 auto;
+        }
 
-.card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-}
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
 
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.999s ease-in-out;
-}
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.999s ease-in-out;
+        }
 
-.movie-card:hover .card-inner {
-  transform: rotateY(180deg);
-}
+        .movie-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
 
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 15px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.card-front {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  color: white;
-  transform: rotateY(0deg);
-}
+        .card-front {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            transform: rotateY(0deg);
+        }
 
-.card-back {
-  background: #F08A5D;
-  color: white;
-  transform: rotateY(180deg);
-  padding: 1.5rem;
-  text-align: center;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-.movie-poster {
-  width: 100%;
-  height: auto;
-  max-height: 250px;
-  object-fit: cover;
-  display: block;
-  border-radius: 15px 15px 0 0;
-}
+        .card-back {
+            background: #F08A5D;
+            color: white;
+            transform: rotateY(180deg);
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            display: block;
+            border-radius: 15px 15px 0 0;
+            background: #222;
+        }
 
         .movie-info {
             padding: 1.5rem;
@@ -232,7 +230,6 @@
             color: #ffd700;
         }
 
-        
         .showtimes-table {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -273,7 +270,6 @@
             color: #1a1a1a;
         }
 
-        
         .theater {
             max-width: 800px;
             margin: 2rem auto;
@@ -351,7 +347,6 @@
             border-radius: 4px;
         }
 
-        
         .booking-summary {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -360,7 +355,6 @@
             margin-top: 2rem;
         }
 
-        
         .contact-form {
             max-width: 600px;
             margin: 2rem auto;
@@ -398,7 +392,6 @@
             box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
         }
 
-        
         footer {
             background: rgba(0, 0, 0, 0.9);
             text-align: center;
@@ -406,24 +399,23 @@
             margin-top: 4rem;
         }
 
-        
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .movies-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .seats-container {
                 grid-template-columns: repeat(8, 1fr);
             }
-            
+
             .seat {
                 width: 35px;
                 height: 35px;
@@ -446,7 +438,6 @@
     </header>
 
     <main>
-        
         <div id="home" class="page active">
             <section class="hero">
                 <div class="container">
@@ -457,7 +448,6 @@
             </section>
         </div>
 
-        
         <div id="movies" class="page">
             <div class="container">
                 <h2>Now Showing</h2>
@@ -465,7 +455,6 @@
             </div>
         </div>
 
-        
         <div id="showtimes" class="page">
             <div class="container">
                 <h2>Movie Showtimes</h2>
@@ -485,7 +474,6 @@
             </div>
         </div>
 
-        
         <div id="booking" class="page">
             <div class="container">
                 <h2>Select Your Seats</h2>
@@ -516,7 +504,6 @@
             </div>
         </div>
 
-        
         <div id="contact" class="page">
             <div class="container">
                 <h2>Contact Us</h2>
@@ -524,15 +511,15 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" required />
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" required />
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone">
+                            <input type="tel" id="phone" />
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
@@ -552,14 +539,13 @@
     </footer>
 
     <script>
-        
         const movies = [
-            { id: 1, title: "Mirai", genre: "Sci-Fi Action", rating: "★★★★☆", duration: "2h 15m" , image: "assets/mirai.jpg" },
-            { id: 2, title: "Kotha Lokah: Chapter 1 - Chandra", genre: "Romance", rating: "★★★★★", duration: "1h 45m" , image: "assets/kotha lokah.jpg" },
-            { id: 3, title: "Kishkindhapuri", genre: "Adventure", rating: "★★★☆☆", duration: "2h 5m" , image: "assets/kishkindapuri.jpg"},
-            { id: 4, title: "Little Hearts", genre: "Comedy", rating: "★★★★☆", duration: "1h 55m" , image: "assets/little hearts.jpg"},
-            { id: 5, title: "The Conjuring: Last Rites", genre: "Horror", rating: "★★★☆☆", duration: "1h 50m" , image: "assets/conjuring.jpg"},
-            { id: 6, title: "Demon Slayer: Kimetsu no Yaiba Infinity Castle", genre: "Sci-Fi", rating: "★★★★★", duration: "2h 30m" , image: "assets/demonslayer.jpg"}
+            { id: 1, title: "Mirai", genre: "Sci-Fi Action", rating: "★★★★☆", duration: "2h 15m", image: "assets/mirai.jpg" },
+            { id: 2, title: "Kotha Lokah: Chapter 1 - Chandra", genre: "Romance", rating: "★★★★★", duration: "1h 45m", image: "assets/kotha-lokah.jpg" },
+            { id: 3, title: "Kishkindhapuri", genre: "Adventure", rating: "★★★☆☆", duration: "2h 5m", image: "assets/kishkindapuri.jpg" },
+            { id: 4, title: "Little Hearts", genre: "Comedy", rating: "★★★★☆", duration: "1h 55m", image: "assets/little-hearts.jpg" },
+            { id: 5, title: "The Conjuring: Last Rites", genre: "Horror", rating: "★★★☆☆", duration: "1h 50m", image: "assets/conjuring.jpg" },
+            { id: 6, title: "Demon Slayer: Kimetsu no Yaiba Infinity Castle", genre: "Sci-Fi", rating: "★★★★★", duration: "2h 30m", image: "assets/demonslayer.jpg" }
         ];
 
         const showtimes = [
@@ -574,21 +560,13 @@
         let selectedSeats = [];
         let seatPrice = 15;
 
-        
         function showPage(pageId) {
-            
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-
-            
             document.getElementById(pageId).classList.add('active');
-
-            
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => link.classList.remove('active'));
             event.target.classList.add('active');
-
-            
             if (pageId === 'movies') {
                 displayMovies();
             } else if (pageId === 'showtimes') {
@@ -598,62 +576,51 @@
             }
         }
 
-        
         function displayMovies() {
-    const moviesGrid = document.getElementById('moviesGrid');
-    moviesGrid.innerHTML = '';
-
-   const movieOverviews = {
-    "Mirai": "Dominate the Universe.",
-    "Kotha Lokah: Chapter 1 - Chandra": "Discover the love.",
-    "Kishkindhapuri": "Uncover the secrets.",
-    "Little Hearts": "A heartwarming tale of laughter and friendship.",
-    "The Conjuring: Last Rites": "Face the final chapter of fear.",
-    "Demon Slayer: Kimetsu no Yaiba Infinity Castle": "The ultimate battle begins."
-};
-    movies.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.className = 'movie-card';
-
-        movieCard.innerHTML = `
-            <div class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-  <img class="movie-poster" src="${movie.image}" alt="${movie.title}" />
-  <div class="movie-info">
-    <h3>${movie.title}</h3>
-    <div class="movie-rating">${movie.rating}</div>
-    <p><strong>Genre:</strong> ${movie.genre}</p>
-    <p><strong>Duration:</strong> ${movie.duration}</p>
-  </div>
-</div>
-                    <div class="card-back">
-                        <p>${movieOverviews[movie.title]}</p>
+            const moviesGrid = document.getElementById('moviesGrid');
+            moviesGrid.innerHTML = '';
+            const movieOverviews = {
+                "Mirai": "Dominate the Universe.",
+                "Kotha Lokah: Chapter 1 - Chandra": "Discover the love.",
+                "Kishkindhapuri": "Uncover the secrets.",
+                "Little Hearts": "A heartwarming tale of laughter and friendship.",
+                "The Conjuring: Last Rites": "Face the final chapter of fear.",
+                "Demon Slayer: Kimetsu no Yaiba Infinity Castle": "The ultimate battle begins."
+            };
+            movies.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.className = 'movie-card';
+                movieCard.innerHTML = `
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img class="movie-poster" src="${movie.image}" alt="${movie.title}" />
+                                <div class="movie-info">
+                                    <h3>${movie.title}</h3>
+                                    <div class="movie-rating">${movie.rating}</div>
+                                    <p><strong>Genre:</strong> ${movie.genre}</p>
+                                    <p><strong>Duration:</strong> ${movie.duration}</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <p>${movieOverviews[movie.title]}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        `;
-
-        movieCard.addEventListener('click', () => {
-            showPage('showtimes');
-        });
-
-        moviesGrid.appendChild(movieCard);
-    });
-}
-     
+                `;
+                movieCard.addEventListener('click', () => showPage('showtimes'));
+                moviesGrid.appendChild(movieCard);
+            });
+        }
 
         function displayShowtimes() {
             const tableBody = document.querySelector('#showtimesTable tbody');
             tableBody.innerHTML = '';
-
             showtimes.forEach(showtime => {
                 const row = document.createElement('tr');
-                
-                const timesHtml = showtime.times.map(time => 
+                const timesHtml = showtime.times.map(time =>
                     `<span class="time-slot" onclick="selectShowtime('${showtime.movie}', '${time}', ${showtime.price})">${time}</span>`
                 ).join('');
-
                 row.innerHTML = `
                     <td>${showtime.movie}</td>
                     <td>${showtime.theater}</td>
@@ -664,20 +631,16 @@
             });
         }
 
-    
         function selectShowtime(movie, time, price) {
             seatPrice = price;
             showPage('booking');
             generateSeats();
         }
 
-    
         function generateSeats() {
             const seatsContainer = document.getElementById('seatsContainer');
             seatsContainer.innerHTML = '';
             selectedSeats = [];
-
-        
             for (let row = 0; row < 10; row++) {
                 for (let seat = 0; seat < 10; seat++) {
                     const seatElement = document.createElement('div');
@@ -685,24 +648,19 @@
                     seatElement.dataset.row = String.fromCharCode(65 + row);
                     seatElement.dataset.seat = seat + 1;
                     seatElement.textContent = `${String.fromCharCode(65 + row)}${seat + 1}`;
-
-                    
                     if (Math.random() < 0.3) {
                         seatElement.classList.add('occupied');
                     } else {
                         seatElement.addEventListener('click', () => toggleSeat(seatElement));
                     }
-
                     seatsContainer.appendChild(seatElement);
                 }
             }
             updateBookingSummary();
         }
 
-        
         function toggleSeat(seatElement) {
             const seatId = `${seatElement.dataset.row}${seatElement.dataset.seat}`;
-            
             if (seatElement.classList.contains('selected')) {
                 seatElement.classList.remove('selected');
                 selectedSeats = selectedSeats.filter(seat => seat !== seatId);
@@ -710,68 +668,45 @@
                 seatElement.classList.add('selected');
                 selectedSeats.push(seatId);
             }
-            
             updateBookingSummary();
         }
 
-        
         function updateBookingSummary() {
-            document.getElementById('selectedSeats').textContent = 
-                selectedSeats.length > 0 ? selectedSeats.join(', ') : 'None';
+            document.getElementById('selectedSeats').textContent = selectedSeats.length ? selectedSeats.join(', ') : 'None';
             document.getElementById('totalPrice').textContent = selectedSeats.length * seatPrice;
         }
 
-        
         function confirmBooking() {
             if (selectedSeats.length === 0) {
                 alert('Please select at least one seat!');
                 return;
             }
-
             const total = selectedSeats.length * seatPrice;
             alert(`Booking confirmed!\n\nSeats: ${selectedSeats.join(', ')}\nTotal: $${total}\n\nThank you for choosing CinePlex!`);
-            
-            
             selectedSeats = [];
             generateSeats();
         }
 
-        
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
             alert(`Thank you ${name}! Your message has been sent successfully. We'll get back to you soon.`);
-            
-            
             this.reset();
         });
 
-        
-        window.addEventListener('load', function() {
-            displayMovies();
-        });
+        document.addEventListener('DOMContentLoaded', displayMovies);
 
-        
-        document.addEventListener('DOMContentLoaded', function() {
-        
+        document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
+                link.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-2px)';
                 });
-                
-                link.addEventListener('mouseleave', function() {
+                link.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0)';
                 });
             });
-
-            
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 const scrolled = window.pageYOffset;
                 const hero = document.querySelector('.hero');
                 if (hero) {
